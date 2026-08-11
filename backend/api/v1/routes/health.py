@@ -5,7 +5,7 @@ router = APIRouter(tags=["Health"])
 
 @router.get("/")
 def home():
-    return {"message": "HR Policy RAG API - CrewAI is running."}
+    return {"message": " Agentic RAG Document Search Platform - CrewAI is running."}
 
 
 @router.get("/health")

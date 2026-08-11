@@ -2,7 +2,7 @@ from pydantic_settings import BaseSettings
 
 
 class Settings(BaseSettings):
-    app_title: str = "HR Policy RAG API - CrewAI"
+    app_title: str = " Agentic RAG Document Search Platform - CrewAI"
     app_version: str = "2.0"
     debug: bool = False
 

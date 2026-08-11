@@ -22,7 +22,7 @@ export interface ChatResponse {
   providedIn: 'root'
 })
 export class ChatbotService {
-  private apiUrl = 'http://localhost:8000/ask';
+  private apiUrl = 'http://localhost:8000/api/v1/ask';
 
   constructor(private http: HttpClient) {}
 

@@ -10,6 +10,7 @@ import { EmployeeDocumentsComponent } from './pages/employee-documents';
 import { BenefitsComponent } from './pages/benefits';
 import { HelpDeskComponent } from './pages/help-desk';
 import { PersonalInfoComponent } from './pages/personal-info';
+import { IngestComponent } from './pages/ingest';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
@@ -21,6 +22,7 @@ export const routes: Routes = [
   { path: 'performance-management', component: PerformanceManagementComponent },
   { path: 'learning-development', component: LearningDevelopmentComponent },
   { path: 'employee-documents', component: EmployeeDocumentsComponent },
+  { path: 'ingest', component: IngestComponent },
   { path: 'benefits', component: BenefitsComponent },
   { path: 'help-desk', component: HelpDeskComponent },
   { path: 'personal-info', component: PersonalInfoComponent },
