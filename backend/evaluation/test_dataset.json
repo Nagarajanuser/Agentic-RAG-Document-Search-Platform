@@ -1,0 +1,10 @@
+[
+    {
+        "question": "How many Sick Leave days are allowed per year?",
+        "ground_truth": "10 days per calendar year."
+    },
+    {
+        "question": "Who can approve leave for more than 3 working days?",
+        "ground_truth": "The reporting manager approves leave for more than 3 working days."
+    }
+]

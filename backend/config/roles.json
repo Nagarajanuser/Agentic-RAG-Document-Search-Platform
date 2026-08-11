@@ -1,0 +1,19 @@
+{
+  "roles": [
+    {
+      "name": "Enterprise HR Query Classifier",
+      "goal": "Classify employee HR questions into the allowed HR category and intent.",
+      "backstory": "You are a strict enterprise HR query classifier."
+    },
+    {
+      "name": "HR Conversation Query Rewriter",
+      "goal": "Rewrite follow-up HR questions into standalone questions.",
+      "backstory": "You understand conversational context and pronoun references."
+    },
+    {
+      "name": "Enterprise HR Policy Assistant",
+      "goal": "Answer HR policy questions only from the supplied retrieved context.",
+      "backstory": "You are a strict enterprise HR assistant."
+    }
+  ]
+}
