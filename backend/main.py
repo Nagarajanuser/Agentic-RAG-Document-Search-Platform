@@ -6,6 +6,7 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
 from fastapi import FastAPI
 from core.middleware import setup_middleware
+from core.observability import init_phoenix_tracing
 from core.settings import settings
 from api.v1.routes import admin, evaluation, health, ingest, search, session
 
@@ -16,6 +17,9 @@ app = FastAPI(
 
 # Setup CORS and application middleware
 setup_middleware(app)
+
+# Initialize Phoenix Observability & OpenInference Tracing
+init_phoenix_tracing()
 
 # Include API v1 Routers with /api/v1 prefix
 app.include_router(health.router, prefix="/api/v1")

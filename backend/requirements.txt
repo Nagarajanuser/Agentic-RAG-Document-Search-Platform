@@ -168,4 +168,7 @@ xxhash==3.8.1
 yarl==1.24.5
 zstandard==0.25.0
 unstructured==0.16.20
-
+arize-phoenix
+openinference-instrumentation-langchain
+openinference-instrumentation-crewai
+arize-phoenix-otel

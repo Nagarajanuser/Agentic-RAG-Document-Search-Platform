@@ -66,13 +66,12 @@ interface LocalFileItem {
 
             <!-- Drag & Drop Zone -->
             <div 
-              class="drop-zone border border-2 border-dashed rounded-4 p-5 text-center transition-all cursor-pointer position-relative mb-4"
+              class="drop-zone border border-2 rounded-4 p-5 text-center transition-all cursor-pointer position-relative mb-4"
               [class.drag-over]="isDragOver"
               (dragover)="onDragOver($event)"
               (dragleave)="onDragLeave($event)"
               (drop)="onDrop($event)"
               (click)="fileInput.click()"
-              style="border-color: #cbd5e1 !important; background: linear-gradient(180deg, #f8fafc 0%, #f1f5f9 100%);"
             >
               <input 
                 #fileInput 
@@ -84,10 +83,16 @@ interface LocalFileItem {
               />
               
               <div class="mb-3">
-                <i class="bi bi-cloud-upload display-4 text-primary opacity-75"></i>
+                <div class="icon-pulse-container d-inline-flex p-3 rounded-circle mb-2" style="background: rgba(99, 102, 241, 0.15);">
+                  <i class="bi bi-cloud-arrow-up-fill display-4 text-primary"></i>
+                </div>
               </div>
-              <h6 class="fw-bold text-dark mb-1">Drag & Drop PDF files here or click to browse</h6>
-              <p class="text-muted small mb-0">Only PDF documents are supported for high-resolution section chunking.</p>
+              <h5 class="drop-zone-title mb-2">
+                Drag & Drop PDF files here or <span class="text-primary text-decoration-underline">browse files</span>
+              </h5>
+              <p class="drop-zone-subtitle small mb-0">
+                Supports high-resolution PDF document chunking, HuggingFace embeddings & Pinecone vector indexing.
+              </p>
             </div>
 
             <!-- Selected File List -->
@@ -244,11 +249,29 @@ interface LocalFileItem {
   `,
   styles: [`
     .drop-zone {
-      transition: all 0.2s ease-in-out;
+      border: 2px dashed #6366f1 !important;
+      background: linear-gradient(135deg, rgba(99, 102, 241, 0.08) 0%, rgba(15, 23, 42, 0.6) 100%) !important;
+      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
     }
     .drop-zone:hover, .drop-zone.drag-over {
-      border-color: #3b82f6 !important;
-      background: #eff6ff !important;
+      border-color: #818cf8 !important;
+      background: rgba(99, 102, 241, 0.18) !important;
+      box-shadow: 0 0 25px rgba(99, 102, 241, 0.25) !important;
+      transform: translateY(-2px);
+    }
+    .drop-zone-title {
+      color: #f8fafc !important;
+      font-weight: 700;
+      font-size: 1.1rem;
+    }
+    .drop-zone-subtitle {
+      color: #94a3b8 !important;
+    }
+    .icon-pulse-container {
+      transition: transform 0.2s ease;
+    }
+    .drop-zone:hover .icon-pulse-container {
+      transform: scale(1.1);
     }
     .spin {
       animation: spin 1s linear infinite;

@@ -52,4 +52,26 @@ def retrieve_documents(state):
         metadata_filter=metadata_filter,
     )
 
-    return results.get("matches", [])
+    raw_matches = (
+        results.get("matches", [])
+        if isinstance(results, dict)
+        else getattr(results, "matches", [])
+    )
+
+    clean_matches = []
+    for m in raw_matches:
+        if isinstance(m, dict):
+            clean_matches.append(m)
+        elif hasattr(m, "to_dict"):
+            clean_matches.append(m.to_dict())
+        else:
+            clean_matches.append(
+                {
+                    "id": getattr(m, "id", ""),
+                    "score": float(getattr(m, "score", 0.0)),
+                    "metadata": getattr(m, "metadata", {}) or {},
+                }
+            )
+
+    return clean_matches
+
