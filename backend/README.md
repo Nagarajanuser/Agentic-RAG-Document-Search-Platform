@@ -42,6 +42,8 @@ pip install datasets
 # Run Ragas Evaluation
 python evaluation/evaluate_ragas.py 
 
+# Phoenix Observability
+phoenix serve
 
 
 # MySQL Production Setup

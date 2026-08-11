@@ -202,3 +202,82 @@ Automated GitHub Actions pipeline defined in [`.github/workflows/ci-cd.yml`](fil
 - **Lint & Unit Tests**: Executes pytest suite on every push and pull request.
 - **Build & Container Registry**: Builds production Docker images for backend and frontend and pushes them to Docker Hub.
 - **Kubernetes CD Rollout**: Automatically deploys updated manifests and verifies successful rollout status.
+
+
+### 7. Architecture Diagram
+
+```
+                         ┌─────────────────────┐
+                         │   Angular Frontend   │
+                         │     Chat UI         │
+                         └──────────┬──────────┘
+                                    │
+                              POST /ask
+                                    │
+                                    ▼
+                         ┌─────────────────────┐
+                         │      FastAPI        │
+                         │     REST API        │
+                         └──────────┬──────────┘
+                                    │
+                                    ▼
+                         ┌─────────────────────┐
+                         │     CrewAI Flow     │
+                         │   Orchestration     │
+                         └──────────┬──────────┘
+                                    │
+                 ┌──────────────────┼──────────────────┐
+                 │                  │                  │
+                 ▼                  ▼                  ▼
+          ┌────────────┐    ┌──────────────┐   ┌─────────────┐
+          │ Validation │    │ Intent /     │   │ Conversation│
+          │ Guardrails │    │ Classification│   │ Memory     │
+          └────────────┘    └──────────────┘   │   MySQL     │
+                                               └─────────────┘
+                                    │
+                                    ▼
+                         ┌─────────────────────┐
+                         │ Query Rewriting     │
+                         │ History-aware       │
+                         └──────────┬──────────┘
+                                    │
+                                    ▼
+                         ┌─────────────────────┐
+                         │ Semantic Cache      │
+                         │ Pinecone            │
+                         └──────────┬──────────┘
+                                    │ Cache Miss
+                                    ▼
+                  ┌──────────────────────────────────┐
+                  │       Hybrid Retrieval           │
+                  │                                  │
+                  │  Dense Search     BM25 Search    │
+                  │      BGE              Sparse     │
+                  └──────────────────┬───────────────┘
+                                     │
+                                     ▼
+                              ┌─────────────┐
+                              │  Pinecone   │
+                              │ Top-K = 30  │
+                              └──────┬──────┘
+                                     │
+                                     ▼
+                              ┌─────────────┐
+                              │ CrossEncoder│
+                              │  Reranker   │
+                              └──────┬──────┘
+                                     │
+                                  Top 5
+                                     │
+                                     ▼
+                              ┌─────────────┐
+                              │ Answer Agent│
+                              │    LLM      │
+                              └──────┬──────┘
+                                     │
+                                     ▼
+                           Answer + Citations
+                                     │
+                                     ▼
+                              Angular UI
+```
