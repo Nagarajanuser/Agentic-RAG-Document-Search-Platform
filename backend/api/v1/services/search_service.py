@@ -1,7 +1,7 @@
 import uuid
 
-from ai.crews.interview_crew import HRRAGFlow
-from api.v1.schemas.interview_schema import (
+from ai.crews.search_crew import HRRAGFlow
+from api.v1.schemas.search_schema import (
     ApiResponse,
     ErrorResponse,
     QuestionRequest,
@@ -9,7 +9,7 @@ from api.v1.schemas.interview_schema import (
 )
 from core.logger import logger
 from core.security import logged_in_user
-from models.interview_question import RAGState
+from models.search_question import RAGState
 from repositories.session_repository import save_chat_message, save_chat_session
 
 

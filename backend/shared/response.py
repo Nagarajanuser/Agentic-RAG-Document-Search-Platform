@@ -1,4 +1,4 @@
-from api.v1.schemas.interview_schema import (
+from api.v1.schemas.search_schema import (
     ApiResponse,
     ErrorResponse,
     QuestionResponse,

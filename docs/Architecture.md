@@ -34,19 +34,19 @@ xebia_document_search_platform/
 │   ├── api/                             # API Presentation Layer
 │   │   └── v1/
 │   │        ├── routes/
-│   │        │      ├── interview.py     # Main /ask POST endpoint router
+│   │        │      ├── search.py        # Main /ask POST endpoint router
 │   │        │      ├── evaluation.py    # Evaluation API endpoints
 │   │        │      ├── session.py       # Session history retrieval router
 │   │        │      ├── health.py        # / and /health health check router
 │   │        │      └── admin.py         # Admin status router
 │   │        │
 │   │        ├── schemas/
-│   │        │      ├── interview_schema.py # QuestionRequest, QuestionResponse, Source, ApiResponse, ErrorResponse
+│   │        │      ├── search_schema.py # QuestionRequest, QuestionResponse, Source, ApiResponse, ErrorResponse
 │   │        │      ├── evaluation_schema.py# Evaluation API Pydantic schemas
 │   │        │      └── session_schema.py   # Session history API Pydantic schemas
 │   │        │
 │   │        └── services/
-│   │               ├── interview_service.py # High-Level RAG Execution & Orchestration Service
+│   │               ├── search_service.py# High-Level RAG Execution & Orchestration Service
 │   │               ├── evaluation_service.py# Evaluation Business Logic Service
 │   │               └── session_service.py  # Session Management Service
 │   │
@@ -55,7 +55,7 @@ xebia_document_search_platform/
 │   │   │      ├── classifier_agent.py   # Enterprise HR Query Classifier Agent
 │   │   │      ├── history_agent.py      # Conversation Context Query Rewriter Agent
 │   │   │      ├── answer_agent.py       # Strict Enterprise HR Policy Assistant Agent
-│   │   │      ├── planner_agent.py      # Technical Interview Topic Planner Agent
+│   │   │      ├── planner_agent.py      # Search Topic Planner Agent
 │   │   │      ├── question_agent.py     # Evaluation Question Generator Agent
 │   │   │      ├── qa_agent.py           # Quality & Safety Assurance Auditor Agent
 │   │   │      └── evaluator_agent.py    # Answer Scoring & Evaluation Agent
@@ -68,14 +68,14 @@ xebia_document_search_platform/
 │   │   │      └── evaluation_task.py   # Evaluation Task Builder
 │   │   │
 │   │   ├── crews/
-│   │   │      ├── interview_crew.py     # HRRAGFlow Deterministic Execution Engine
+│   │   │      ├── search_crew.py        # HRRAGFlow Deterministic Execution Engine
 │   │   │      └── evaluation_crew.py    # Evaluation Crew Orchestration Engine
 │   │   │
 │   │   ├── prompts/
 │   │   │      ├── classifier_prompt.py  # Query Classification Prompts & Allowed Taxonomy
 │   │   │      ├── history_prompt.py     # History Query Rewrite Rules & Prompts
 │   │   │      ├── answer_prompt.py      # Context-Grounded Answer Generation Prompts
-│   │   │      ├── planner_prompt.py     # Interview Planning Prompts
+│   │   │      ├── planner_prompt.py     # Search Planning Prompts
 │   │   │      ├── question_prompt.py    # Question Generation Prompts
 │   │   │      ├── qa_prompt.py          # Quality Assurance Prompts
 │   │   │      └── evaluation_prompt.py  # Response Evaluation Prompts
@@ -89,14 +89,14 @@ xebia_document_search_platform/
 │   │          └── roles.json            # Agent Roles, Goals & Backstory Declarations
 │   │
 │   ├── repositories/                    # Data Access Layer
-│   │      ├── interview_repository.py   # Pinecone Dense/Sparse Hybrid Search & Filtering
+│   │      ├── search_repository.py      # Pinecone Dense/Sparse Hybrid Search & Filtering
 │   │      ├── session_repository.py     # MySQL Chat Sessions & Message History Repository
 │   │      ├── evaluation_repository.py  # Evaluation Data Repository
 │   │      └── role_repository.py        # Role Permissions Repository
 │   │
 │   ├── models/                          # Domain Data Models
-│   │      ├── interview_question.py     # RAGState Flow Execution Model
-│   │      ├── interview_session.py      # Session Domain Model
+│   │      ├── search_question.py        # RAGState Flow Execution Model
+│   │      ├── search_session.py         # Session Domain Model
 │   │      └── evaluation.py             # Evaluation Domain Model
 │   │
 │   ├── shared/                          # Utility & Helper Shared Layer
@@ -139,14 +139,8 @@ xebia_document_search_platform/
 │
 └── frontend/                            # Angular Web Front-End Application
     ├── Dockerfile                       # Multi-stage Nginx Container Image Definition for Frontend
-    ├── nginx.conf                       # Production Reverse Proxy Configuration
-    ├── src/
-    │   ├── app/
-    │   │   ├── components/              # UI Components (Chat Widget, Auth, Admin, etc.)
-    │   │   ├── services/                # HttpClient Service (chatbot.service.ts)
-    │   │   ├── guards/                  # Angular Route Guards
-    │   │   ├── models/                  # TypeScript Interfaces
-    │   │   └── environments/            # Application Environment Variables
+    ├── nginx.conf                       # Production Nginx Proxy Configuration
+    ├── src/                             # Angular SPA Source Code (Chat Widget, Services)
     ├── angular.json                     # Angular Build Configuration
     └── package.json                     # Node.js Dependency Specifications
 ```

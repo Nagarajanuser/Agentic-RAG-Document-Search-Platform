@@ -7,7 +7,7 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from fastapi import FastAPI
 from core.middleware import setup_middleware
 from core.settings import settings
-from api.v1.routes import admin, evaluation, health, interview, session
+from api.v1.routes import admin, evaluation, health, search, session
 
 app = FastAPI(
     title=settings.app_title,
@@ -19,7 +19,7 @@ setup_middleware(app)
 
 # Include API v1 and Root Routers
 app.include_router(health.router)
-app.include_router(interview.router)
+app.include_router(search.router)
 app.include_router(evaluation.router, prefix="/api/v1")
 app.include_router(session.router, prefix="/api/v1")
 app.include_router(admin.router, prefix="/api/v1")

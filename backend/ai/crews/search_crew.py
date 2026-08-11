@@ -5,8 +5,8 @@ from ai.tasks.qa_task import run_history_rewriter
 from ai.tasks.question_task import run_classifier
 from core.constants import ALLOWED_CATEGORIES, ALLOWED_INTENTS
 from core.logger import logger
-from models.interview_question import RAGState
-from repositories.interview_repository import retrieve_documents
+from models.search_question import RAGState
+from repositories.search_repository import retrieve_documents
 from repositories.session_repository import get_chat_history
 from shared.helpers.context_builder import build_context
 from shared.helpers.reranker import rerank_documents

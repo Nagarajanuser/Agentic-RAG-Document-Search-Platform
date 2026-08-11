@@ -47,7 +47,7 @@ graph TD
         CORS["CORS & Middleware"]:::api
         Validator["Input Validator & Guardrails"]:::api
         Router["API Router (/ask, /health, /api/v1/*)"]:::api
-        Service["Interview / RAG Service"]:::api
+        Service["Search / RAG Service"]:::api
     end
 
     subgraph Agentic_Engine["🤖 Agentic AI Engine (CrewAI Framework)"]
@@ -166,24 +166,24 @@ xebia_document_search_platform/
 │   │
 │   ├── api/                             # Presentation REST API Layer
 │   │   └── v1/
-│   │        ├── routes/                 # Endpoint Routers (interview, health, evaluation, session, admin)
-│   │        ├── schemas/                # Request & Response Pydantic Schemas
-│   │        └── services/               # High-Level Business & RAG Orchestration Services
+│   │        ├── routes/                 # Endpoint Routers (search, health, evaluation, session, admin)
+│   │        ├── schemas/                # Request & Response Pydantic Schemas (search_schema.py)
+│   │        └── services/               # High-Level Business & RAG Orchestration Services (search_service.py)
 │   │
 │   ├── ai/                              # CrewAI Agentic Engine
 │   │   ├── agents/                      # Agent Definitions (Classifier, History Rewriter, Answer Specialist)
 │   │   ├── tasks/                       # Agent Execution Task Builders
-│   │   ├── crews/                       # HRRAGFlow Deterministic Execution Flow
+│   │   ├── crews/                       # HRRAGFlow Execution Flow (search_crew.py)
 │   │   ├── prompts/                     # Prompt Templates & Policy Governance Rules
 │   │   ├── llm/                         # LLM Provider Wrappers (Ollama, OpenAI, Factory)
 │   │   └── configs/                     # Agent Role Declarations (roles.json)
 │   │
 │   ├── repositories/                    # Data Access Layer
-│   │      ├── interview_repository.py   # Vector Search & Retrieval Queries
+│   │      ├── search_repository.py      # Vector Search & Retrieval Queries
 │   │      └── session_repository.py     # MySQL Chat Sessions & Message History
 │   │
 │   ├── models/                          # Domain Data Models
-│   │      └── interview_question.py     # RAGState Execution Model
+│   │      └── search_question.py        # RAGState Execution Model
 │   │
 │   ├── shared/                          # Shared Utility Layer
 │   │      ├── exceptions/               # Custom Application Exceptions

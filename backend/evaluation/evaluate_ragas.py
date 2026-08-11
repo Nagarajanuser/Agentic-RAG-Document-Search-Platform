@@ -21,12 +21,12 @@ if PROJECT_ROOT not in sys.path:
     sys.path.insert(0, PROJECT_ROOT)
 
 # Import components from production architecture
-from ai.crews.interview_crew import HRRAGFlow
+from ai.crews.search_crew import HRRAGFlow
 from core.security import logged_in_user
 from core.startup import embedding_model
 from datasets import Dataset
 from langchain_ollama import ChatOllama
-from models.interview_question import RAGState
+from models.search_question import RAGState
 from ragas import RunConfig, evaluate
 from ragas.metrics import (
     answer_relevancy,
