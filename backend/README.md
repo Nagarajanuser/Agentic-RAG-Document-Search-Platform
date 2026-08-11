@@ -39,5 +39,27 @@ pip install ragas==0.2.15
 pip install datasets
 
 
-# Ragas Evaluation
+# Run Ragas Evaluation
 python evaluation/evaluate_ragas.py 
+
+
+
+# MySQL Production Setup
+
+## Create Database for Chat History
+CREATE DATABASE documnet_search_db;
+
+## Create Tables
+CREATE TABLE chat_sessions (
+    session_id CHAR(36) PRIMARY KEY,
+    user_id BIGINT NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE chat_messages (
+    message_id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    session_id VARCHAR(100) NOT NULL,
+    role VARCHAR(20) NOT NULL,
+    message TEXT NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
